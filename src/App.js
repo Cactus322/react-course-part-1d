@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import Feedback from './components/Feedback'
+import Statistics from './components/Statistics'
+import {useState} from "react";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    const feedbackValue = [
+        'good',
+        'neutral',
+        'bad'
+    ];
+
+    const [good, setGood] = useState( { count: 0, name: 'good' });
+    const [neutral, setNeutral] = useState({ count: 0, name: 'neutral' });
+    const [bad, setBad] = useState({ count: 0, name: 'bad' });
+    const [all, setAll] = useState({ count: 0, name: 'all' });
+    const [average, setAverage] = useState({ count: 0, name: 'average' });
+    const [positive, setPositive] = useState({ count: 0, name: 'positive' });
+
+    return (
+    <>
+      <Feedback feedback={feedbackValue}
+                good={[good, setGood]}
+                neutral={[neutral, setNeutral]}
+                bad={[bad, setBad]}
+                all={[all, setAll]}
+                average={[average, setAverage]}
+                positive={[positive, setPositive]}
+      />
+      <Statistics value={[good, neutral, bad, all, average, positive]} />
+    </>
   );
 }
 
